@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 TO=${1}
 mkdirs -p TO
 while read p; do
