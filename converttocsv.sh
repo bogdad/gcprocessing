@@ -1,7 +1,11 @@
 #!/bin/bash
-FILES=${1}
+set -e
+SRC=${1}
+mkdir -p ${2}
+FILES="${SRC}/*.log"
 for f in $FILES
 do
   echo "Processing $f file..."
-  java -jar target/gcviewer-1.35-SNAPSHOT.jar $f processed_$f.csv -t CSV
+  filename="${f##*/}"
+  java -jar ./gcviewer-1.35-SNAPSHOT.jar $f ${2}/processed_$filename.csv -t CSV
 done
