@@ -20,11 +20,18 @@ function dframe(fullfilename)
     dfWithTime
 end
 
+function dfRing()
+    df = DataFrames.readtable("./notebook/ring.csv", header = false)
+    df = @transform(df, Host = :x1, Token = :x8)
+    @select(df, :Host, :Token)
+end
+
 function readalltoone(dir) 
     overAll=DataFrames.DataFrame()
+    dfR = dfRing()
     for file = readdir(dir)
         println(file) # path to files
-        df = dframe("$dir/$file")
+        df = join(dframe("$dir/$file"), dfR, on = :Host) 
         overAll = [overAll; df]
     end
     overAll    
