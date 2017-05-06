@@ -26,4 +26,4 @@ function readalltoone(dir)
 end
 
 new = readalltoone("./new_csv")
-save("./workspace.jld", "new", new)
+writetable("output_new.csv", new)
