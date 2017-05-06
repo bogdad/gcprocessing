@@ -9,6 +9,19 @@ using StatPlots
 using DataFrames
 using JLD
 
+df = DataFrames.readtable(fullfilename, separator = ',', header = true)
+
+x = randn(500)
+data = [
+  [
+    "x" => df,
+    "type" => "histogram"
+  ]
+]
+response = PlotlyJS.plot(data, ["filename" => "basic-histogram", "fileopt" => "overwrite"])
+plot_url = response["url"]
+
+
 plotlyjs()
 StatPlots.scatter(df[(df[:Pause_sec_].>2),:], :Timestamp_unix_, :Pause_sec_, group=:Host,
                title = "GC Pause",
