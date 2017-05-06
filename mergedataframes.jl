@@ -8,7 +8,9 @@ using JLD
 
 function host(fullfilename)
     _, filename = splitdir(fullfilename)
-    rsplit(split(filename, ".")[1], "-")[end]
+    hen = rsplit(split(filename, ".")[1], "-")[end]
+    pod = split(filename, ".")[2]
+    "$hen.$pod"
 end
 
 function dframe(fullfilename)
