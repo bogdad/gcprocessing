@@ -8,5 +8,5 @@ for f in $FILES
 do
   echo "Processing $f file..."
   filename="${f##*/}"
-  java -jar ./gcviewer-1.35-SNAPSHOT.jar $f ${DEST}/processed_$filename.csv -t CSV_TS
+  java -jar ./gcviewer-1.35-SNAPSHOT.jar $f ${DEST}/processed_$filename.csv -t CSV_TS_BOTH
 done
