@@ -42,3 +42,9 @@ writetable("output_new.csv", new)
 
 old = readalltoone("./old_csv")
 writetable("output_old.csv", old)
+
+oldash = readalltoone("./oldash_csv")
+writetable("output_oldash.csv", oldash)
+
+new2 = readalltoone("./new2_csv")
+writetable("output_new2.csv", oldash)
