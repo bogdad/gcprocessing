@@ -13,12 +13,12 @@ function host(fullfilename)
         hen = splitted[end]
     end
     pod = split(filename, ".")[2]
-    "$hen.$pod"
+    ("$hen.$pod", pod)
 end
 
 function dframe(fullfilename)
     df = DataFrames.readtable(fullfilename, separator = ',', header = true)
-    df[:Host] = host(fullfilename)
+    df[:Host], df[:Pod] = host(fullfilename)
     dfWithTime = @transform(df, Time = Dates.unix2datetime(:Timestamp_unix_))
     dfWithTime
 end
