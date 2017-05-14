@@ -1,7 +1,3 @@
-Pkg.add("DataFrames")
-Pkg.add("DataFramesMeta")
-Pkg.add("JLD")
-
 using DataFrames
 using DataFramesMeta
 using JLD
@@ -37,14 +33,9 @@ function readalltoone(dir)
     overAll    
 end
 
-new = readalltoone("./new_csv")
-writetable("output_new.csv", new)
 
-old = readalltoone("./old_csv")
-writetable("output_old.csv", old)
+# usage julia -- mergedataframes.jl FROM TO
 
-oldash = readalltoone("./oldash_csv")
-writetable("output_oldash.csv", oldash)
-
-new2 = readalltoone("./new2_csv")
-writetable("output_new2.csv", oldash)
+print(map(x->string(x, x), ARGS))
+df = readalltoone(ARGS[1])
+writetable(ARGS[2], df)
