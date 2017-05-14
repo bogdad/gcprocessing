@@ -1,16 +1,16 @@
 #!/bin/bash
 set -e
 TO=${1}
-TMP=./tmp
 mkdir -p ${TO}
 while read p; do
     echo "${p}"
-    mkdir -p ${TMP}
+    TMP=`mktemp -d` || exit 1
+    echo $TMP
     F="${TO}/gc_$p.log"
     [ -f "$F" ] || scp -C "${p}:/var/log/cassandra/gc.log*" $TMP
-    for file in ./tmp/*; do
+    for file in ${TMP}/*; do
         filename="${file##*/}"
         mv "$file" "${TO}/${p}_${filename}"; 
     done
-    rm -rf ./tmp
+    rm -rf $TMP
 done
