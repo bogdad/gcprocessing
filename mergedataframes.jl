@@ -4,7 +4,14 @@ using JLD
 
 function host(fullfilename)
     _, filename = splitdir(fullfilename)
-    hen = rsplit(split(filename, ".")[1], "-")[end]
+    splitted = rsplit(split(filename, ".")[1], "-")
+    if length(splitted) == 4
+        l3 = splitted[3]
+        l4 = splitted[4]
+        hen = "$l3-$l4"
+    else
+        hen = splitted[end]
+    end
     pod = split(filename, ".")[2]
     "$hen.$pod"
 end
@@ -25,6 +32,7 @@ end
 function readalltoone(dir) 
     overAll=DataFrames.DataFrame()
     dfR = dfRing()
+    
     for file = readdir(dir)
         println(file) # path to files
         df = join(dframe("$dir/$file"), dfR, on = :Host) 
